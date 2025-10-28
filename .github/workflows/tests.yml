@@ -9,6 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./  # ← корень репозитория
+
     steps:
       - uses: actions/checkout@v3
 
@@ -19,8 +23,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./  
 
       - name: Run tests
         run: npm test
-        working-directory: ./  # корень репозитория
