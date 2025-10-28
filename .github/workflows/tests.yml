@@ -2,20 +2,25 @@ name: Run Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, feature/test-task ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, feature/test-task ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
       - name: Install dependencies
         run: npm install
+        working-directory: ./  
+
       - name: Run tests
         run: npm test
+        working-directory: ./  # корень репозитория
